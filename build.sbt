@@ -10,7 +10,11 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 scalaVersion := "2.12.8"
 
 libraryDependencies ++= Seq(
-  scalaTest,
+  macwireMacroSakka,
+  macwireMacros,
+  macwireProxy,
+  macwireUtil,
+  scalaTest
 )
 
 val unusedWarnings = "-Ywarn-unused" ::
