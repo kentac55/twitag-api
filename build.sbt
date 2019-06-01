@@ -10,8 +10,22 @@ scalaVersion := "2.12.8"
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.2" % Test
 
-// Adds additional packages into Twirl
-//TwirlKeys.templateImports += "com.kc5m.controllers._"
+val unusedWarnings = "-Ywarn-unused" ::
+  "-Ywarn-unused-import" ::
+  Nil
 
-// Adds additional packages into conf/routes
-// play.sbt.routes.RoutesKeys.routesImport += "com.kc5m.binders._"
+scalacOptions ++= (
+  "-deprecation" ::
+    "-unchecked" ::
+    "-Xlint" ::
+    "-Xfuture" ::
+    "-language:existentials" ::
+    "-language:higherKinds" ::
+    "-language:implicitConversions" ::
+    "-Yno-adapted-args" ::
+    Nil
+) ::: unusedWarnings
+
+Seq(Compile, Test).flatMap(
+  c => scalacOptions in (c, console) --= unusedWarnings
+)
