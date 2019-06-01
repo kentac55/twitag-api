@@ -1,10 +1,17 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# https://www.playframework.com/documentation/latest/ScalaRouting
-# ~~~~
-
-# An example controller showing a sample home page
+###
+#  summary: Get twits
+#  responses:
+#    200:
+#      description: twitags
+#      content:
+#        application/json:
+#          schema:
+#            $ref: '#/components/schemas/com.kc5m.twitag.dto.res.TwitsRes'
+###
 GET     /twits                      com.kc5m.twitag.controllers.TwitController.get
 
-# Map static resources from the /public folder to the /assets URL path
+### NoDocs ###
+GET     /docs/swagger-ui/*file      controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
+### NoDocs ###
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

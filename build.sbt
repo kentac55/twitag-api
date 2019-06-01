@@ -46,3 +46,6 @@ scalacOptions ++= (
 Seq(Compile, Test).flatMap(
   c => scalacOptions in (c, console) --= unusedWarnings
 )
+
+swaggerDomainNameSpaces := Seq("com.kc5m.twitag.dto.res")
+swaggerV3 := true
