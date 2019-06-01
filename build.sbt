@@ -47,5 +47,22 @@ Seq(Compile, Test).flatMap(
   c => scalacOptions in (c, console) --= unusedWarnings
 )
 
+val port = 9000
+
+dockerBaseImage := "azul/zulu-openjdk-alpine:11-jre"
+dockerExposedPorts := Seq(port)
+daemonUserUid in Docker := None
+daemonUser in Docker := "daemon"
+javaOptions in Universal ++= Seq(
+  "-J-Xmx1024m",
+  "-J-Xms512m",
+  "-Dpidfile.path=/dev/null",
+  "-Dconfig.file=/opt/docker/conf/application.conf",
+  "-Dlogger.file=/opt/docker/conf/logback-prod.xml",
+  "-DapplyEvolutions.default=true",
+  "-XX:+UnlockExperimentalVMOptions",
+  "-XX:+UseContainerSupport"
+)
+
 swaggerDomainNameSpaces := Seq("com.kc5m.twitag.dto.res")
 swaggerV3 := true
