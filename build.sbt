@@ -5,16 +5,26 @@ organization := "com.kc5m"
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+lazy val root = (project in file(".")).enablePlugins(
+  AshScriptPlugin,
+  DockerPlugin,
+  JavaAppPackaging,
+  PlayScala,
+  ScalafmtPlugin,
+  ScalastylePlugin,
+  SwaggerPlugin
+)
 
 scalaVersion := "2.12.8"
 
 libraryDependencies ++= Seq(
+  logstashEncoder,
   macwireMacroSakka,
   macwireMacros,
   macwireProxy,
   macwireUtil,
-  scalaTest
+  scalaTest,
+  swaggerUI
 )
 
 val unusedWarnings = "-Ywarn-unused" ::
