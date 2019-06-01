@@ -1,3 +1,5 @@
+import Dependencies._
+
 name := """twitag-api"""
 organization := "com.kc5m"
 
@@ -7,8 +9,9 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.12.8"
 
-libraryDependencies += guice
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.2" % Test
+libraryDependencies ++= Seq(
+  scalaTest,
+)
 
 val unusedWarnings = "-Ywarn-unused" ::
   "-Ywarn-unused-import" ::
