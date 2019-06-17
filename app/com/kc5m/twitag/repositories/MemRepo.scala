@@ -23,6 +23,9 @@ class MemRepo(implicit ec: ExecutionContext) extends TwitRepo {
       OffsetDateTime.now()
     )
   )
+  def one(id: UUID): Future[Option[Twit]] = Future {
+    twits.find(_.id == id)
+  }
   def list(): Future[Seq[Twit]]       = Future { twits }
   def add(twiTag: Twit): Future[Unit] = Future { twits = twits :+ twiTag }
   def delete(id: UUID): Future[Unit] = Future {

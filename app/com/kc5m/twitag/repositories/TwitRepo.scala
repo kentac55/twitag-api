@@ -7,6 +7,7 @@ import com.kc5m.twitag.domains.entities.Twit
 import scala.concurrent.Future
 
 trait TwitRepo {
+  def one(id: UUID): Future[Option[Twit]]
   def list(): Future[Seq[Twit]]
   def add(twiTag: Twit): Future[Unit]
   def delete(id: UUID): Future[Unit]
