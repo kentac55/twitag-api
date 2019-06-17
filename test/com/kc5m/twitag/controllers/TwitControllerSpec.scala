@@ -37,7 +37,7 @@ class TwitControllerSpec extends PlaySpec with Results with ScalaFutures {
             stubControllerComponents()
         }
       val result: Future[Result] =
-        modules.twiTagController.get().apply(FakeRequest())
+        modules.twiTagController.list().apply(FakeRequest())
       val body: JsValue     = contentAsJson(result)
       val expect: Seq[Twit] = Await.result(modules.repo.list(), Inf)
       body mustBe Json.obj(

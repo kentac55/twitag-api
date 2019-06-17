@@ -14,7 +14,7 @@ class TwitController(
     twitsWrites: Writes[TwitsRes],
     uc: GetTwitsUseCase
 ) extends AbstractController(controllerComponents) {
-  def get(): Action[AnyContent] = Action.async {
+  def list(): Action[AnyContent] = Action.async {
     implicit request: Request[AnyContent] =>
       uc.exec(GetTwitsReq(Option.empty, Option.empty, Option.empty))
         .map { twiTags =>
